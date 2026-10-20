@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body { font-family: 'DM Sans', sans-serif; background: #F3ECE2; color: #1A1410; margin: 0; }
+body::after { /* film grain */
+  content: ''; position: fixed; inset: 0; z-index: 90; pointer-events: none; opacity: .07; mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+.glass { background: rgba(243,236,226,.65); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border: 1px solid rgba(26,20,16,.1); }
+.hero-title { font-family: 'Fraunces', serif; font-style: italic; font-weight: 300; font-size: clamp(88px, 20vw, 340px); line-height: .8; letter-spacing: -0.045em; }
+.section-title { font-family: 'Fraunces', serif; font-style: italic; font-weight: 300; font-size: clamp(56px, 10vw, 160px); line-height: .95; letter-spacing: -0.03em; }
+:focus-visible { outline: 2px solid #B4492C; outline-offset: 3px; }
+.reveal { opacity: 0; transform: translateY(40px); transition: opacity 1s ease, transform 1s ease; }
+.reveal.is-visible { opacity: 1; transform: none; }
+@keyframes rise { from { opacity: 0; transform: translateY(50px); } }
+.rise { animation: rise 1.4s cubic-bezier(.2,.7,.2,1) both; }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } .rise { animation: none; } }
+
+.mask { display: block; overflow: hidden; padding-bottom: .12em; }
+.mask-in { display: block; }
+html.has-cursor, html.has-cursor * { cursor: none !important; }
+
+.film { position: relative; padding: 24px 0; background: #0e0907; }
+.film::before, .film::after { content: ''; position: absolute; left: 0; right: 0; height: 10px; border-radius: 2px; opacity: .85;
+  background: repeating-linear-gradient(90deg, #F3ECE2 0 14px, transparent 14px 30px); }
+.film::before { top: 7px; } .film::after { bottom: 7px; }
+.lamp { position: fixed; inset: 0; z-index: 55; pointer-events: none;
+  background: radial-gradient(520px circle at var(--mx, 50vw) var(--my, 40vh), rgba(255,196,120,.16), transparent 65%); }
